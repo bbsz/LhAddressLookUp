@@ -11,10 +11,9 @@ import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
 import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
-
+import org.apache.http.ssl.SSLContextBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
@@ -41,6 +40,7 @@ public class OpenUkAddressSearchService {
     public OpenUkAddressSearchService(@Value("${openUkAddressSearch.byPostCode}") String openUkAddressSearchUrl) {
         this.openAddressSearchByPostCodeUrl = openUkAddressSearchUrl;
         this.restTemplate = new RestTemplate();
+        this.restTemplate.setRequestFactory(getRequestFactory());
     }
 
     @VisibleForTesting
