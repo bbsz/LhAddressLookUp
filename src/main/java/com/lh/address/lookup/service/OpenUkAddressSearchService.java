@@ -19,14 +19,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.client.RestTemplate;
 
-import javax.net.ssl.HostnameVerifier;
 import javax.net.ssl.SSLContext;
-import java.security.KeyManagementException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -64,6 +59,10 @@ public class OpenUkAddressSearchService {
 
     private Address toAddress(AddressDto dto) {
         Address address = new Address();
+        address.setHouseNumber(dto.getPao());
+        address.setStreet(dto.getStreet().getEnName());
+        address.setTown(dto.getTown().getEnName());
+        address.setPostCode(dto.getPostcode().getName());
         return address;
     }
 

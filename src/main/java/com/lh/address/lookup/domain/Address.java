@@ -11,18 +11,18 @@ public class Address {
     private String houseNumber;
     @JsonProperty(value = "street", required = true)
     private String street;
-    @JsonProperty(value = "city", required = true)
-    private String city;
+    @JsonProperty(value = "town", required = true)
+    private String town;
     @JsonProperty(value = "postCode", required = true)
     private String postCode;
 
     public Address() {
     }
 
-    public Address(String houseNumber, String street, String city, String postCode) {
+    public Address(String houseNumber, String street, String town, String postCode) {
         this.houseNumber = houseNumber;
         this.street = street;
-        this.city = city;
+        this.town = town;
         this.postCode = postCode;
     }
 
@@ -42,12 +42,12 @@ public class Address {
         this.street = street;
     }
 
-    public String getCity() {
-        return city;
+    public String getTown() {
+        return town;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setTown(String town) {
+        this.town = town;
     }
 
     public String getPostCode() {

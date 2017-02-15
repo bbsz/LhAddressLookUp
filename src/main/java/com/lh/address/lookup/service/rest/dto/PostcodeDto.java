@@ -11,7 +11,18 @@ public class PostcodeDto {
     @JsonProperty(value = "name")
     private String name;
 
+    public PostcodeDto() {
+    }
+
+    public PostcodeDto(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

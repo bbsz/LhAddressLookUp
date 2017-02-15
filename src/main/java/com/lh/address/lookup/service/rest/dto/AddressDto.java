@@ -12,8 +12,6 @@ public class AddressDto {
     private String pao;
     @JsonProperty(value = "street")
     private StreetDto street;
-    @JsonProperty(value = "locality")
-    private LocalityDto locality;
     @JsonProperty(value = "town")
     private TownDto town;
     @JsonProperty(value = "postcode")
@@ -28,15 +26,27 @@ public class AddressDto {
         return street;
     }
 
-    public LocalityDto getLocality() {
-        return locality;
-    }
-
     public TownDto getTown() {
         return town;
     }
 
     public PostcodeDto getPostcode() {
         return postcode;
+    }
+
+    public void setPao(String pao) {
+        this.pao = pao;
+    }
+
+    public void setStreet(StreetDto street) {
+        this.street = street;
+    }
+
+    public void setTown(TownDto town) {
+        this.town = town;
+    }
+
+    public void setPostcode(PostcodeDto postcode) {
+        this.postcode = postcode;
     }
 }

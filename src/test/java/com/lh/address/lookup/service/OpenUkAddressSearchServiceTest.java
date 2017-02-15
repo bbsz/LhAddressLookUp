@@ -1,8 +1,7 @@
 package com.lh.address.lookup.service;
 
 import com.lh.address.lookup.domain.Address;
-import com.lh.address.lookup.service.rest.dto.AddressDto;
-import com.lh.address.lookup.service.rest.dto.OpenUkAddressSearchDto;
+import com.lh.address.lookup.service.rest.dto.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +31,6 @@ public class OpenUkAddressSearchServiceTest {
     private RestTemplate restTemplate;
     @Mock
     private OpenUkAddressSearchDto openUkAddressSearchDto;
-    @Mock
     private AddressDto addressDto;
 
     private List<Address> addresses;
@@ -52,10 +50,11 @@ public class OpenUkAddressSearchServiceTest {
     }
 
     private void givenARestTemplate() {
-        when(restTemplate.getForObject(eq(SEARCH_URL_OPEN_UK_ADDRESS), eq(OpenUkAddressSearchDto.class), anyMap()) ).thenReturn(openUkAddressSearchDto);
+        when(restTemplate.getForObject(eq(SEARCH_URL_OPEN_UK_ADDRESS), eq(OpenUkAddressSearchDto.class), anyMap())).thenReturn(openUkAddressSearchDto);
     }
 
     private void givenOpenAddress() {
+        addressDto = getAddressDto();
         when(openUkAddressSearchDto.getAddresses()).thenReturn(new AddressDto[]{addressDto});
     }
 
@@ -65,5 +64,29 @@ public class OpenUkAddressSearchServiceTest {
 
     private void flightsAreReturned() {
         assertThat(addresses.size(), is(1));
+        Address address = addresses.get(0);
+
+        assertThat(address.getHouseNumber(), is(addressDto.getPao()));
+        assertThat(address.getStreet(), is(addressDto.getStreet().getEnName()));
+        assertThat(address.getTown(), is(addressDto.getTown().getEnName()));
+        assertThat(address.getPostCode(), is(addressDto.getPostcode().getName()));
     }
+
+    private AddressDto getAddressDto() {
+        TownDto townDto = new TownDto(getName("town"));
+        StreetDto streetDto = new StreetDto(getName("street"));
+        PostcodeDto postcodeDto = new PostcodeDto("postCode");
+
+        AddressDto addressDto = new AddressDto();
+        addressDto.setPao("12");
+        addressDto.setPostcode(postcodeDto);
+        addressDto.setStreet(streetDto);
+        addressDto.setTown(townDto);
+        return addressDto;
+    }
+
+    private NameDto getName(String name) {
+        return new NameDto(new String[]{name});
+    }
+
 }

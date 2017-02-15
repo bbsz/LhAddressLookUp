@@ -13,12 +13,27 @@ public class NameDto {
     @JsonProperty(value = "cy", required = true)
     private String[] cy;
 
+    public NameDto() {
+    }
+
+    public NameDto(String[] en) {
+        this.en = en;
+    }
+
     public String[] getEn() {
         return en;
     }
 
     public String[] getCy() {
         return cy;
+    }
+
+    public void setEn(String[] en) {
+        this.en = en;
+    }
+
+    public void setCy(String[] cy) {
+        this.cy = cy;
     }
 
     public String getFirstEn() {

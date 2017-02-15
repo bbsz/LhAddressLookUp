@@ -14,4 +14,8 @@ public class OpenUkAddressSearchDto {
     public AddressDto[] getAddresses() {
         return addresses;
     }
+
+    public void setAddresses(AddressDto[] addresses) {
+        this.addresses = addresses;
+    }
 }
