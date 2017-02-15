@@ -27,8 +27,8 @@ public class AddressLookUpControllerTest {
     @Mock
     private OpenUkAddressSearchService searchService;
     private AddressLookUpController controller;
-    private Address flight;
-    private List<Address> flights;
+    private Address address;
+    private List<Address> addresses;
 
     @Before
     public void setUp() {
@@ -36,39 +36,40 @@ public class AddressLookUpControllerTest {
     }
 
     @Test
-    public void searchCrazyAir() {
+    public void searchAddresses() {
         givenASearchService();
         whenICallSearchCrazyAir();
         dtosAreReturned();
     }
 
     private void givenASearchService() {
-        flight = getAddress();
-        List<Address> flights = Lists.newArrayList(flight);
+        address = getAddress();
+        List<Address> flights = Lists.newArrayList(address);
         when(searchService.getAddressesByPostCode(anyString())).thenReturn(flights);
     }
 
     private void whenICallSearchCrazyAir() {
-        flights = controller.search(POST_CODE_DOWNING_STREET);
+        addresses = controller.search(POST_CODE_DOWNING_STREET);
     }
 
     private void dtosAreReturned() {
-        assertThat(flights.size(), is(1));
-        assertFlights(flights.get(0), flight);
+        assertThat(addresses.size(), is(1));
+        assertAddresses(addresses.get(0), address);
     }
 
-    private void assertFlights(Address returnedFlight, Address flight) {
-//        assertThat(returnedFlight.getAirLine(), is(flight.getAirLine()));
-//        assertThat(returnedFlight.getArrivalDate(), is(flight.getArrivalDate()));
-//        assertThat(returnedFlight.getDepartureDate(), is(flight.getDepartureDate()));
-//        assertThat(returnedFlight.getDepartureAirportCode(), is(flight.getDepartureAirportCode()));
-//        assertThat(returnedFlight.getDestinationAirportCode(), is(flight.getDestinationAirportCode()));
-//        assertThat(returnedFlight.getSupplier(), is(flight.getSupplier()));
-//        assertThat(returnedFlight.getFare(), is(flight.getFare()));
+    private void assertAddresses(Address returnAddress, Address address) {
+        assertThat(returnAddress.getHouseNumber(), is(address.getHouseNumber()));
+        assertThat(returnAddress.getStreet(), is(address.getStreet()));
+        assertThat(returnAddress.getTown(), is(address.getTown()));
+        assertThat(returnAddress.getPostCode(), is(address.getPostCode()));
     }
 
     private Address getAddress() {
-        Address flight = new Address();
-        return flight;
+        Address address = new Address();
+        address.setHouseNumber("houseNumber");
+        address.setStreet("Street");
+        address.setTown("Town");
+        address.setPostCode("PostCode");
+        return address;
     }
 }
