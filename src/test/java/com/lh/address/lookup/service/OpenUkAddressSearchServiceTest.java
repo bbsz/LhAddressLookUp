@@ -46,10 +46,7 @@ public class OpenUkAddressSearchServiceTest {
 
     @Before
     public void setUp() throws Exception {
-//        CloseableHttpClient httpClient = HttpClients.custom().setSSLHostnameVerifier(NoopHostnameVerifier.INSTANCE).build();
-        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
-        factory.setHttpClient(getHttpClient());
-        restTemplate = new RestTemplate(factory);
+        restTemplate = new RestTemplate();
         searchService = new OpenUkAddressSearchService(restTemplate, SEARCH_URL_OPEN_UK_ADDRESS);
     }
 
@@ -65,34 +62,6 @@ public class OpenUkAddressSearchServiceTest {
 //        when(restTemplate.getForObject(eq(SEARCH_URL_OPEN_UK_ADDRESS), any(AddressDto[].class), any(Object.class))).thenReturn(crazyAirDtos);
     }
 
-    private HttpClient getHttpClient() {
-        SSLContext sslContext = getSslContext();
-        PoolingHttpClientConnectionManager connMgr = getConnectionManager(sslContext);
-
-        HttpClientBuilder b = HttpClientBuilder.create();
-        b.setSslcontext(sslContext);
-        b.setConnectionManager(connMgr);
-        return b.build();
-    }
-
-    private PoolingHttpClientConnectionManager getConnectionManager(SSLContext sslContext) {
-        SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
-        Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
-                .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                .register("https", sslSocketFactory)
-                .build();
-        return new PoolingHttpClientConnectionManager(socketFactoryRegistry);
-    }
-
-    private SSLContext getSslContext() {
-        try {
-            SSLContextBuilder contextBuilder = new SSLContextBuilder();
-            contextBuilder.loadTrustMaterial(null, (x509Certificates, allowAll) -> true).build();
-            return contextBuilder.build();
-        } catch (Exception ex) {
-            throw new RuntimeException(ex);
-        }
-    }
 
     private void whenICallGetFlights() {
         addresses = searchService.getAddressesByPostCode(POST_CODE_DOWNING_STREET);
