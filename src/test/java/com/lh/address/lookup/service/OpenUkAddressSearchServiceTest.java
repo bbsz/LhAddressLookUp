@@ -7,8 +7,9 @@ import org.apache.http.config.Registry;
 import org.apache.http.config.RegistryBuilder;
 import org.apache.http.conn.socket.ConnectionSocketFactory;
 import org.apache.http.conn.socket.PlainConnectionSocketFactory;
+import org.apache.http.conn.ssl.NoopHostnameVerifier;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
-import org.apache.http.conn.ssl.SSLContextBuilder;
+import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.junit.Before;
@@ -64,7 +65,7 @@ public class OpenUkAddressSearchServiceTest {
 //        when(restTemplate.getForObject(eq(SEARCH_URL_OPEN_UK_ADDRESS), any(AddressDto[].class), any(Object.class))).thenReturn(crazyAirDtos);
     }
 
-    private HttpClient getHttpClient() throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+    private HttpClient getHttpClient() {
         SSLContext sslContext = getSslContext();
         PoolingHttpClientConnectionManager connMgr = getConnectionManager(sslContext);
 
@@ -75,7 +76,7 @@ public class OpenUkAddressSearchServiceTest {
     }
 
     private PoolingHttpClientConnectionManager getConnectionManager(SSLContext sslContext) {
-        SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, SSLConnectionSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
         Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
                 .register("http", PlainConnectionSocketFactory.getSocketFactory())
                 .register("https", sslSocketFactory)
