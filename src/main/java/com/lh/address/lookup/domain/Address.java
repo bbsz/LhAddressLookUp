@@ -7,6 +7,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class Address {
 
+    private static final String STREET_ADDRESS_SEPARATOR = " ";
+
     @JsonProperty(value = "houseNumber", required = true)
     private String houseNumber;
     @JsonProperty(value = "street", required = true)
@@ -56,5 +58,9 @@ public class Address {
 
     public void setPostCode(String postCode) {
         this.postCode = postCode;
+    }
+
+    public String getStreetAddress() {
+        return houseNumber + STREET_ADDRESS_SEPARATOR + street;
     }
 }

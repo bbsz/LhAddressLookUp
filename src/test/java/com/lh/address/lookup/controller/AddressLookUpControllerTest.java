@@ -29,7 +29,7 @@ public class AddressLookUpControllerTest {
     private AddressLookUpController controller;
     private Address address;
     private List<Address> addresses;
-    private List<String> streetNames;
+    private List<String> streetNamesAdresses;
 
     @Before
     public void setUp() {
@@ -50,6 +50,13 @@ public class AddressLookUpControllerTest {
         streetNamesAreReturned();
     }
 
+    @Test
+    public void searchStreetAddresses() {
+        givenASearchService();
+        whenICallSearchStreetsAddressesByPostCode();
+        streetAddressesAreReturned();
+    }
+
     private void givenASearchService() {
         address = getAddress();
         List<Address> addresses = Lists.newArrayList(address);
@@ -61,7 +68,11 @@ public class AddressLookUpControllerTest {
     }
 
     private void whenICallSearchStreetsNamesByPostCode() {
-        streetNames = controller.searchStreetNamesByPostCode(POST_CODE_DOWNING_STREET);
+        streetNamesAdresses = controller.searchStreetNamesByPostCode(POST_CODE_DOWNING_STREET);
+    }
+
+    private void whenICallSearchStreetsAddressesByPostCode() {
+        streetNamesAdresses = controller.searchStreetAddressesByPostCode(POST_CODE_DOWNING_STREET);
     }
 
     private void addressesAreReturned() {
@@ -70,8 +81,13 @@ public class AddressLookUpControllerTest {
     }
 
     private void streetNamesAreReturned() {
-        assertThat(streetNames.size(), is(1));
-        assertThat(streetNames.get(0), is(address.getStreet()));
+        assertThat(streetNamesAdresses.size(), is(1));
+        assertThat(streetNamesAdresses.get(0), is(address.getStreet()));
+    }
+
+    private void streetAddressesAreReturned() {
+        assertThat(streetNamesAdresses.size(), is(1));
+        assertThat(streetNamesAdresses.get(0), is(address.getStreetAddress()));
     }
 
     private void assertAddresses(Address returnAddress, Address address) {
