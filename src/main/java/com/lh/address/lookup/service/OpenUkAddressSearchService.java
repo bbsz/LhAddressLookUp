@@ -53,6 +53,7 @@ public class OpenUkAddressSearchService {
     public List<Address> getAddressesByPostCode(String postCode) {
         Map<String, String> params = new HashMap<>();
         params.put("postCode", postCode);
+
         OpenUkAddressSearchDto dto = restTemplate.getForObject(openAddressSearchByPostCodeUrl, OpenUkAddressSearchDto.class, params);
         return Arrays.stream(dto.getAddresses()).map(addressDto -> toAddress(addressDto)).collect(Collectors.toList());
     }
