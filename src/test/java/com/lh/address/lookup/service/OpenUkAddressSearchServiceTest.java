@@ -32,6 +32,7 @@ public class OpenUkAddressSearchServiceTest {
 
     @Before
     public void setUp() {
+        restTemplate = new RestTemplate();
         searchService = new OpenUkAddressSearchService(restTemplate, SEARCH_URL_OPEN_UK_ADDRESS);
     }
 
@@ -45,7 +46,6 @@ public class OpenUkAddressSearchServiceTest {
     private void givenARestTemplate() {
 //        OpenUkAddressDto[] crazyAirDtos = new OpenUkAddressDto[]{openUkAddressDto};
 //        when(restTemplate.getForObject(eq(SEARCH_URL_OPEN_UK_ADDRESS), any(OpenUkAddressDto[].class), any(Object.class))).thenReturn(crazyAirDtos);
-        restTemplate = new RestTemplate();
     }
 
 
