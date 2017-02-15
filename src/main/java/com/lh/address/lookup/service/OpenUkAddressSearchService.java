@@ -1,18 +1,15 @@
 package com.lh.address.lookup.service;
 
 import com.google.common.annotations.VisibleForTesting;
-import com.google.common.collect.Lists;
 import com.lh.address.lookup.domain.Address;
-import com.lh.address.lookup.service.rest.dto.OpenUkAddressDto;
+import com.lh.address.lookup.service.rest.dto.AddressDto;
+import com.lh.address.lookup.service.rest.dto.OpenUkAddressSearchDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -39,12 +36,12 @@ public class OpenUkAddressSearchService {
     public List<Address> getAddressesByPostCode(String postCode) {
         Map<String, String> params = new HashMap<>();
         params.put("postCode", postCode);
-        OpenUkAddressDto[] dtos = restTemplate.getForObject(openAddressSearchByPostCodeUrl, OpenUkAddressDto[].class, params);
-        return Arrays.stream(dtos).map(dto -> toAddress(dto)).collect(Collectors.toList());
+        OpenUkAddressSearchDto dto = restTemplate.getForObject(openAddressSearchByPostCodeUrl, OpenUkAddressSearchDto.class);
+        return Arrays.stream(dto.getAddresses()).map(addressDto -> toAddress(addressDto)).collect(Collectors.toList());
     }
 
-    private Address toAddress(OpenUkAddressDto dto) {
-        Address flight = new Address();
-        return flight;
+    private Address toAddress(AddressDto dto) {
+        Address address = new Address();
+        return address;
     }
 }

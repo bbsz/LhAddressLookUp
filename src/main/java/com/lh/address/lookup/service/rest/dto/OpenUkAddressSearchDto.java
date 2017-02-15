@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by sergej on 15.2.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class PostcodeDto {
-    @JsonProperty(value = "name")
-    private String name;
+public class OpenUkAddressSearchDto {
+    @JsonProperty("addresses")
+    private AddressDto[] addresses;
 
-    public String getName() {
-        return name;
+    public AddressDto[] getAddresses() {
+        return addresses;
     }
 }

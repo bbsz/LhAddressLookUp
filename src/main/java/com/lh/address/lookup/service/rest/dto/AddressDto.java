@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Created by sergej on 13.2.2017.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OpenUkAddressDto {
+public class AddressDto {
     @JsonProperty(value = "pao")
     private String pao;
     @JsonProperty(value = "street")
