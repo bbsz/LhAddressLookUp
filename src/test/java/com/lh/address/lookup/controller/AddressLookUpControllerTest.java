@@ -29,6 +29,7 @@ public class AddressLookUpControllerTest {
     private AddressLookUpController controller;
     private Address address;
     private List<Address> addresses;
+    private List<String> streetNames;
 
     @Before
     public void setUp() {
@@ -38,23 +39,39 @@ public class AddressLookUpControllerTest {
     @Test
     public void searchAddresses() {
         givenASearchService();
-        whenICallSearchCrazyAir();
-        dtosAreReturned();
+        whenICallSearchAddressesByPostCode();
+        addressesAreReturned();
+    }
+
+    @Test
+    public void searchStreetNames() {
+        givenASearchService();
+        whenICallSearchStreetsNamesByPostCode();
+        streetNamesAreReturned();
     }
 
     private void givenASearchService() {
         address = getAddress();
-        List<Address> flights = Lists.newArrayList(address);
-        when(searchService.getAddressesByPostCode(anyString())).thenReturn(flights);
+        List<Address> addresses = Lists.newArrayList(address);
+        when(searchService.getAddressesByPostCode(anyString())).thenReturn(addresses);
     }
 
-    private void whenICallSearchCrazyAir() {
-        addresses = controller.search(POST_CODE_DOWNING_STREET);
+    private void whenICallSearchAddressesByPostCode() {
+        addresses = controller.searchAddressesByPostCode(POST_CODE_DOWNING_STREET);
     }
 
-    private void dtosAreReturned() {
+    private void whenICallSearchStreetsNamesByPostCode() {
+        streetNames = controller.searchStreetNamesByPostCode(POST_CODE_DOWNING_STREET);
+    }
+
+    private void addressesAreReturned() {
         assertThat(addresses.size(), is(1));
         assertAddresses(addresses.get(0), address);
+    }
+
+    private void streetNamesAreReturned() {
+        assertThat(streetNames.size(), is(1));
+        assertThat(streetNames.get(0), is(address.getStreet()));
     }
 
     private void assertAddresses(Address returnAddress, Address address) {

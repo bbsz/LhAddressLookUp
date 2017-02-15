@@ -25,5 +25,4 @@ public class AddressLookUpApp {
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(AddressLookUpApp.class, args);
 	}
-
 }
