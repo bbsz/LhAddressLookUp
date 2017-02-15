@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-package com.travix.busyflights;
+package com.lh.address.lookup;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BusyFlightsApp {
+public class AddressLookUpApp {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplication.run(BusyFlightsApp.class, args);
+		SpringApplication.run(AddressLookUpApp.class, args);
 	}
 
 }

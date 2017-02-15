@@ -1,4 +1,4 @@
-package com.travix.busyflights.service.rest.dto;
+package com.lh.address.lookup.service.rest.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -8,7 +8,7 @@ import java.util.Date;
 /**
  * Created by sergej on 13.2.2017.
  */
-public class CrazyAirFlightDto {
+public class OpenUkAddressDto {
     @JsonProperty(value = "airline", required = true)
     private String airLine;
 
@@ -33,7 +33,7 @@ public class CrazyAirFlightDto {
     private Date arrivalDate;
 
 
-    public CrazyAirFlightDto() {
+    public OpenUkAddressDto() {
     }
 
     public String getAirLine() {
@@ -66,7 +66,7 @@ public class CrazyAirFlightDto {
 
     @Override
     public String toString() {
-        return "CrazyAirFlightDto{" +
+        return "OpenUkAddressDto{" +
                 "airLine='" + airLine + '\'' +
                 ", price=" + price +
                 ", cabinClass='" + cabinClass + '\'' +

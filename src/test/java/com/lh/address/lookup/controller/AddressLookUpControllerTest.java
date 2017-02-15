@@ -1,10 +1,10 @@
-package com.travix.busyflights.controller;
+package com.lh.address.lookup.controller;
 
 import com.google.common.collect.Lists;
+import com.lh.address.lookup.service.OpenUkAddressSearchService;
 import com.travix.busyflights.controller.dto.FlightsSearchRequest;
 import com.travix.busyflights.domain.Flight;
-import com.travix.busyflights.service.FlightsSearchService;
-import com.travix.busyflights.service.SearchCriteria;
+import com.lh.address.lookup.service.SearchCriteria;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -23,13 +23,13 @@ import static org.mockito.Mockito.when;
  * Created by sergej on 13.2.2017.
  */
 @RunWith(MockitoJUnitRunner.class)
-public class FlightsSearchControllerTest {
+public class AddressLookUpControllerTest {
 
     private static final String SUPPLIER_CRAZY_AIR = "CrazyAir";
     private static final String SUPPLIER_TOUGH_JET = "ToughJet";
 
     @Mock
-    private FlightsSearchService searchService;
+    private OpenUkAddressSearchService searchService;
     @Mock
     private FlightsSearchRequest request;
     private FlightsSearchController controller;
