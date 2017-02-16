@@ -33,6 +33,9 @@ import java.util.stream.Collectors;
 @Service
 public class OpenUkAddressSearchService {
 
+    public static final String HTTP = "http";
+    public static final String HTTPS = "https";
+
     private RestTemplate restTemplate;
     private String openAddressSearchByPostCodeUrl;
 
@@ -86,8 +89,8 @@ public class OpenUkAddressSearchService {
     private PoolingHttpClientConnectionManager getConnectionManager(SSLContext sslContext) {
         SSLConnectionSocketFactory sslSocketFactory = new SSLConnectionSocketFactory(sslContext, new NoopHostnameVerifier());
         Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
-                .register("http", PlainConnectionSocketFactory.getSocketFactory())
-                .register("https", sslSocketFactory)
+                .register(HTTP, PlainConnectionSocketFactory.getSocketFactory())
+                .register(HTTPS, sslSocketFactory)
                 .build();
         return new PoolingHttpClientConnectionManager(socketFactoryRegistry);
     }
