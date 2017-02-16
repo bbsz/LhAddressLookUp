@@ -1,0 +1,70 @@
+{
+	"id": "8cdf90d3-9f63-a311-3a7d-d3f69d58b879",
+	"name": "LoveHolidays_BOBUSKY",
+	"description": "",
+	"order": [
+		"2f94aa0e-4bfa-771f-a6ec-71002d3cc21e",
+		"b3f61c4a-f34a-5c3d-8c17-0f231b74abac",
+		"d2020c3f-5ba8-a389-4ef8-a169a29b59c5"
+	],
+	"folders": [],
+	"timestamp": 1487175447657,
+	"owner": "",
+	"public": false,
+	"requests": [
+		{
+			"id": "2f94aa0e-4bfa-771f-a6ec-71002d3cc21e",
+			"headers": "",
+			"url": "localhost:8080/addressLookUp/addressesByPostCode?postCode=SW1A2AA",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1487176494017,
+			"name": "localhost:8080/addressLookUp/addressesByPostCode?postCode=SW1A2AA",
+			"description": "",
+			"collectionId": "8cdf90d3-9f63-a311-3a7d-d3f69d58b879",
+			"responses": []
+		},
+		{
+			"id": "b3f61c4a-f34a-5c3d-8c17-0f231b74abac",
+			"headers": "",
+			"url": "localhost:8080/addressLookUp/streetAddressesByPostCode?postCode=SW1A2AA",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1487176492304,
+			"name": "localhost:8080/addressLookUp/streetAddressesByPostCode?postCode=SW1A2AA",
+			"description": "",
+			"collectionId": "8cdf90d3-9f63-a311-3a7d-d3f69d58b879",
+			"responses": []
+		},
+		{
+			"id": "d2020c3f-5ba8-a389-4ef8-a169a29b59c5",
+			"headers": "",
+			"url": "localhost:8080/addressLookUp/streetNamesByPostCode?postCode=SW1A2AA",
+			"preRequestScript": null,
+			"pathVariables": {},
+			"method": "GET",
+			"data": null,
+			"dataMode": "params",
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"time": 1487176489705,
+			"name": "localhost:8080/addressLookUp/streetNamesByPostCode?postCode=SW1A2AA copy",
+			"description": "",
+			"collectionId": "8cdf90d3-9f63-a311-3a7d-d3f69d58b879",
+			"responses": []
+		}
+	]
+}
